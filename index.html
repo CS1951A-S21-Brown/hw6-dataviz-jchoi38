@@ -10,19 +10,119 @@
     </head>
 <body>
     <div class="header">
-        <h3>Assignment 6 &laquo; Data Visualization Dashboard &raquo;</h3>
+        <h3>&laquo; Top Video Games of All Time &raquo;</h3>
+        <h5>Groupbed by Genres, Regions, Publishers</h5>
     </div>
     <!--  We included a basic HTML structure for the 3 graphs here. Feel free to change this if you'd like  -->
     <div class="row">
         <div class="col-lg-6">
             <div id="graph1"></div>
+            
+            <p style="font-size: 15px;">Select a region to view top-selling genres in the region</p>
+            <div class="buttons2">
+                <button type="button" class="btn btn-info" onclick="setGraph2('NA_Sales')">North America</button>
+                <button type="button" class="btn btn-info" onclick="setGraph2('EU_Sales')">Europe</button>
+                <button type="button" class="btn btn-info" onclick="setGraph2('JP_Sales')">Japan</button>
+                <button type="button" class="btn btn-info" onclick="setGraph2('Other_Sales')">Rest of the World</button>
+                <button type="button" class="btn btn-info" onclick="setGraph2('Global_Sales')">Global</button>
+            </div>
+            <p style="font-size: 15px;">Hover over a slice to view genre and sales number</p>
             <div id="graph2"></div><br/>
         </div>
         <div class="col-lg-6">
+            <p> Genres: Action, Adventure, Fighting, Platform, Puzzle, </p>
+            <p> Racing, Role-Playing, Shooter, Simluation, Sports, Strategy, Misc </p>
+            <div class="buttons3">
+                <input type="text" id="input_genre" class="form-control" placeholder="Action" aria-label="Action"
+                        aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button style="border-top-left-radius: 0; border-bottom-left-radius: 0;"
+                            class="btn btn-primary" type="button" onclick="setGenre()">
+                        Submit
+                    </button>
+                </div>
+            </div>
+            <p id="top_publisher"> Please submit a valid genre. </p>
+            <p id="sales_percentage">  </p>
+            
             <div id="graph3"></div>
         </div>
     </div>
     <!--Feel free to add more JavaScript files as needed-->
     <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="graph1.js"></script>
+    <script type="text/javascript" src="graph2.js"></script>
+    <script type="text/javascript" src="graph3.js"></script>
 </body>
 </html>
+
+
+<!-- Written Questions -->
+<!-- (Question 1)
+I answered the questions for the video games sales data.
+The first graph answers the first question by displaying the top 10 video games of all time using a bar graph.
+I used global sales of each game to order them from the highest to the lowest sales.
+Each bar has a text to show the global sales in millions.
+The second graph answers the second question by showing the genre sales broken out per region on a pie chart.
+When a user clicks on a button representing a region, the pie chart updates with the data of that region's sales.
+Each slice gives the user a sense of the percentage of a genre's sales in that region.
+The size of the slice decreases clockwise in order to show the top genres.
+Because there are 12 genres in a compact space, I used a tooltip to show when the user hovers a mouse on a slice.
+The tooltip shows the number of sales in that region for that genre.
+The third graph answers the third question by indicating the all time top publisher of a genre.
+I used the sum of all time global sales of each game a publisher sold to find the top publisher.
+I also calculated the percentage of all games a top publisher sold in a genre.
+A bar graph is also used to show the top games published by that top publisher.
+The user can understand how much influence a publisher had on a genre and its top games to decide which publisher to pick for a genre.
+
+(Question 2)
+D3 was helpful in these 3 ways in improving my visualization.
+(i) D3 provides a variety of graphs and maps that I can easily implement.
+I do not need to worry about connecting and learning new API's since the syntax is similar for all graphs.
+With featuers like colorscale and css files, I can decorate the graphs to make them visually appealing.
+Also, I can find examples of the implementations on D3 gallery website for reference.
+(ii) D3 allows me to easily organize the graphs.
+I can use functions like translate to decide relative pixel distances between graph features.
+It also provides features like scaling so that each component of a graph is sized to fit in a window.
+(iii) D3 allows the graphs to be dynamic.
+I can easily update the graphs with user inputs (i.e. graph titles) and this dynamic visualization using transition is aesthetically pleasing.
+Also, it provides features like on mouseover so that the user can interact with the website in many ways.
+
+(Question 3)
+D3 would not be the best tool for creating a visualization if the developer knows other tools like virutal DOM libraries or spreadsheets that are more efficient.
+It requires learning almost a new language to implement D3, so it may be easier to use other familiar methods.
+Also, if the dataset is large, D3 may be inefficient.
+As it loads all data points in SVG, the webpage may take a long time to load the visualizations.
+Furthremore, there can be specific libraries for certain data visualizations.
+When just creating one pie chart, for example, using a library spcifically for pie charts may be more efficient than using D3 for all types of charts.
+
+(Question 4)
+The users with visual impairments may find this dashboard inaccessible.
+SVG provides the graph features to be read by the screen reader, but the interactive components may not be as easy to access.
+The colors were chosen in a gradient so that color-blindess would not impair distinguishing between the graphs as much.
+Furthremore, the words are black on a white page for easy contrast.
+For obtaining information, the length of the bar graphs and the size of the pie chart also convey the relative difference of sales.
+The users who desire to view different aspects of the data and enjoy interactive features would find this dashboard accessible.
+The interactive features and explanations on how to use them allow users to explore all data freely.
+Also, the dashboard follows the guides from the article “A Comprehensive Guide to Accessible Data Visualization” for user accessibility.
+For example, the pie chart is divided using white strokes.
+The data associated with a bar appear right next to that bar.
+Complex tools were avoided and simply buttons and user input box were used.
+However, there are still some areas that could be improved by following further guides on the article.
+For example, a hover overlay was implemented for user interactivity and for displaying more data in a compact space.
+This may be difficult, as mentioned above, to use with assistive technology.
+Also, as explained in the article "Why Accessibility Is at the Heart of Data Visualization", the dashboard could be improved with more user access.
+For example, to value reader's time and attention, the fonts and visual components could be more furnished.
+The link to csv data or other data tables to show the data could also help.
+Overall, with more time, the dashboard could be improved by taking into consideration of all possible users.
+
+(Question 5)
+The steps that I could have taken to make the dashboard more accessible to all audiences are mostly mentioned above.
+In general, it seems that having more time and experience with the web design would be most helpful.
+For example, even before the implementation stage, I could have researched more about the possible users and impairments.
+This may not apply specifically for this assignment since the questions are from an imaginary boss, but to spend more time on what graphs or data aspects would be best  would have helped.
+It would require a constant conversation and research between the creater and the users.
+Also, I could have considered other options than D3 for certain aspects of the dashboard.
+It feels like that time limit was the main factor in every decision and with more time, more options and better decisions could have been made.
+
+-->
